@@ -2,11 +2,15 @@ package com.bushaopeng.android.apkparser;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Environment;
 import android.widget.TextView;
 
 import com.bushaopeng.android.parseapk.ApkParser;
 
 public class MainActivity extends Activity {
+    static {
+        System.loadLibrary("deamon");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +20,9 @@ public class MainActivity extends Activity {
         // Example of a call to a native method
         TextView tv = (TextView) findViewById(R.id.sample_text);
 //        tv.setText(stringFromJNI());
-        parseApk();
+//        parseApk();
+        tv.setText("parsing apk");
+        startService(MyService.class.getName(), Environment.getExternalStorageDirectory().getAbsolutePath());
     }
 
     private void parseApk() {
@@ -29,6 +35,7 @@ public class MainActivity extends Activity {
         }.start();
     }
 
+    public static native int startService(String serviceName, String sdPath);
 
 //    /**
 //     * A native method that is implemented by the 'native-lib' native library,

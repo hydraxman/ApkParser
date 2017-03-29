@@ -10,10 +10,16 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-//        externalNativeBuild {
-//            cmake {
-//                cppFlags ""
-//            }
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+//        ndk {
+//            moduleName "deamon"         //生成的so名字
+//            abiFilters "armeabi", "armeabi-v7a", "x86", "arm64-v8a"  //输出指定三种abi体系结构下的so库。目前可有可无。
+////            cFlags cFlags + " NDK_DEBUG=1"
+//            ldLibs "log"       // Link with these libraries!
 //        }
     }
     buildTypes {
@@ -22,10 +28,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-//    externalNativeBuild {
-//        cmake {
-//            path "CMakeLists.txt"
-//        }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+//    sourceSets.main {
+//        jni.srcDirs 'src/main/jni'  // VIP 一定要加这句话，才能识别*.so文件
+//        jniLibs.srcDirs 'lib'  // VIP 一定要加这句话，才能识别*.so文件
 //    }
 }
 

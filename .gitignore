@@ -14,3 +14,4 @@ app/build
 parseApk/build
 *.iml
 local.properties
+app/.externalNativeBuild/

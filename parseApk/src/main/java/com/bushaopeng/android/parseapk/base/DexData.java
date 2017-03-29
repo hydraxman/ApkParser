@@ -10,8 +10,10 @@ import com.bushaopeng.android.parseapk.StringIdsItem;
 import com.bushaopeng.android.parseapk.TypeIdsItem;
 import com.bushaopeng.android.parseapk.utils.LogUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -184,7 +186,11 @@ public class DexData {
         return dataItem;
     }
 
+    //日志打印日期
+    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd号HH:mm:ss");
+
     public void printData() {
+        LogUtils.log("===" + simpleDateFormat.format(new Date()) + "===", true);
         for (Map.Entry<String, DexDataItem> entry : dataItems.entrySet()) {
             DexDataItem item = entry.getValue();
             if (item != null) {

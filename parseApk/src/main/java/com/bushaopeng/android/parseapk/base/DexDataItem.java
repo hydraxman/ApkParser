@@ -37,12 +37,12 @@ public abstract class DexDataItem<T, U> extends DexItem {
                     stringBuilder.append(realData[i]);
                 }
             }
-            LogUtils.log(stringBuilder.toString());
+            LogUtils.log(stringBuilder.toString(), true);
         }
     }
 
     protected void printTitle() {
-        LogUtils.log("\n" + name + " : byteSize is " + byteSize + " : count is " + count + " : start is " + start + " : data is :");
+        LogUtils.log("\n" + name + " : byteSize is " + byteSize + " : count is " + count + " : start is " + start + " : data is :", true);
     }
 
     public void fillRefs() {

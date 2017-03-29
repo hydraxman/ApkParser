@@ -9,8 +9,15 @@ public class LogUtils {
     private static final String TAG = "parseApk";
 
     public static void log(Object msg) {
+        log(msg, false);
+    }
+
+    public static void log(Object msg, boolean toFile) {
         if (msg == null) {
             return;
+        }
+        if (toFile) {
+            Log2File.fi(msg);
         }
         Log.i(TAG, msg.toString());
     }
