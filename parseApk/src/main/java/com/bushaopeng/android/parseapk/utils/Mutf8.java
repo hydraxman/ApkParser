@@ -64,7 +64,7 @@ public final class Mutf8 {
      * 当然, leb128最多只会使用到5个字节, 如果读取5个字节后下一个字节最高位仍为1, 则表示该dex无效
      *
      * @param in
-     * @return
+     * @return 第一个数为结果 第二个数字为该数占用的字节数
      */
     public static int[] readUnsignedLeb128(byte[] in, int offset) {
         if (in == null) {

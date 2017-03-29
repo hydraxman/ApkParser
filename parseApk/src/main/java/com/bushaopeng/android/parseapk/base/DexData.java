@@ -125,6 +125,7 @@ public class DexData {
                 }
             }
         }
+        //第0层 String
         for (Map.Entry<String, DexDataItem> entry : dataItems.entrySet()) {
             dataItem = entry.getValue();
             if (dataItem.readyToFill()) {
@@ -133,24 +134,28 @@ public class DexData {
                 dataItem.parseBaseRealData(dexData);
             }
         }
+        //第1层 Type
         for (Map.Entry<String, DexDataItem> entry : dataItems.entrySet()) {
             dataItem = entry.getValue();
             if (dataItem.readyToFill()) {
                 dataItem.parse1stRealData(dataItems, dexData);
             }
         }
+        // 第2层 FieldIdsItem ClassDef Proto
         for (Map.Entry<String, DexDataItem> entry : dataItems.entrySet()) {
             dataItem = entry.getValue();
             if (dataItem.readyToFill()) {
                 dataItem.parse2ndRealData(dataItems, dexData);
             }
         }
+        // 第3层 Method
         for (Map.Entry<String, DexDataItem> entry : dataItems.entrySet()) {
             dataItem = entry.getValue();
             if (dataItem.readyToFill()) {
                 dataItem.parse3rdRealData(dataItems, dexData);
             }
         }
+        // 第四次 ClassDef Data
         for (Map.Entry<String, DexDataItem> entry : dataItems.entrySet()) {
             dataItem = entry.getValue();
             if (dataItem.readyToFill()) {

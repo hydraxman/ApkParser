@@ -89,27 +89,29 @@ public class ClassContent {
                 methods[i].codeOff = result[0];
                 offset += result[1];
                 int codeOff = methods[i].codeOff;
-                DexCode code = methods[i].code;
-                code.registersSize = Utils.u2ToInt(dexData, codeOff);
-                codeOff += 2;
-                code.insSize = Utils.u2ToInt(dexData, codeOff);
-                codeOff += 2;
-                code.outsSize = Utils.u2ToInt(dexData, codeOff);
-                codeOff += 2;
-                code.triesSize = Utils.u2ToInt(dexData, codeOff);
-                codeOff += 2;
-                code.debugInfoOff = Utils.bytesToInt(dexData, codeOff);
-                codeOff += 4;
-                code.insnsSize = Utils.bytesToInt(dexData, codeOff);
-                codeOff += 4;
-                code.insns = new int[code.insnsSize];
-                code.insnsRaw = new byte[code.insnsSize * 2];
-                System.arraycopy(dexData, codeOff, code.insnsRaw, 0, code.insnsSize * 2);
-                for (int j = 0; j < code.insnsSize; j++) {
-                    code.insns[j] = Utils.u2ToInt(dexData, codeOff);
+                if (codeOff > 0) {
+                    DexCode code = methods[i].code;
+                    code.registersSize = Utils.u2ToInt(dexData, codeOff);
                     codeOff += 2;
+                    code.insSize = Utils.u2ToInt(dexData, codeOff);
+                    codeOff += 2;
+                    code.outsSize = Utils.u2ToInt(dexData, codeOff);
+                    codeOff += 2;
+                    code.triesSize = Utils.u2ToInt(dexData, codeOff);
+                    codeOff += 2;
+                    code.debugInfoOff = Utils.bytesToInt(dexData, codeOff);
+                    codeOff += 4;
+                    code.insnsSize = Utils.bytesToInt(dexData, codeOff);
+                    codeOff += 4;
+                    code.insns = new int[code.insnsSize];
+                    code.insnsRaw = new byte[code.insnsSize * 2];
+                    System.arraycopy(dexData, codeOff, code.insnsRaw, 0, code.insnsSize * 2);
+                    for (int j = 0; j < code.insnsSize; j++) {
+                        code.insns[j] = Utils.u2ToInt(dexData, codeOff);
+                        codeOff += 2;
+                    }
+                    code.parseInsns(dataItems);
                 }
-                code.parseInsns(dataItems);
             }
             return offset;
         }

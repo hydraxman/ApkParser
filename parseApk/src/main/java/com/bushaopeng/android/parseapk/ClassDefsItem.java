@@ -5,6 +5,7 @@ import com.bushaopeng.android.parseapk.base.DexData;
 import com.bushaopeng.android.parseapk.base.DexDataItem;
 import com.bushaopeng.android.parseapk.data.ClassContent;
 import com.bushaopeng.android.parseapk.refs.ClassRef;
+import com.bushaopeng.android.parseapk.utils.LogUtils;
 import com.bushaopeng.android.parseapk.utils.Mutf8;
 import com.bushaopeng.android.parseapk.utils.Utils;
 
@@ -88,8 +89,10 @@ public class ClassDefsItem extends DexDataItem<ClassRef, ClassContent> {
 
     @Override
     public void parse4thRealData(Map<String, DexDataItem> dataItems, byte[] dexData) {
-        for (ClassContent content : realData) {
-            content.classData.fillData(dataItems,dexData);
+        for (int i = 0; i < realData.length; i++) {
+            ClassContent content = realData[i];
+            LogUtils.log("current parsing " + i);
+            content.classData.fillData(dataItems, dexData);
         }
     }
 }
