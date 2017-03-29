@@ -89,6 +89,7 @@ public class ClassContent {
                 methods[i].codeOff = result[0];
                 offset += result[1];
                 int codeOff = methods[i].codeOff;
+                //对于虚方法 codeOff = 0
                 if (codeOff > 0) {
                     DexCode code = methods[i].code;
                     code.registersSize = Utils.u2ToInt(dexData, codeOff);
